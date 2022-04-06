@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+BookModel _$BookModelFromJson(Map<String, dynamic> json) {
+  return _BookModel.fromJson(json);
+}
+
 /// @nodoc
 class _$BookModelTearOff {
   const _$BookModelTearOff();
@@ -25,6 +29,10 @@ class _$BookModelTearOff {
       type,
       available,
     );
+  }
+
+  BookModel fromJson(Map<String, Object?> json) {
+    return BookModel.fromJson(json);
   }
 }
 
@@ -38,6 +46,7 @@ mixin _$BookModel {
   String get type => throw _privateConstructorUsedError;
   bool get available => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BookModelCopyWith<BookModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -133,9 +142,12 @@ class __$BookModelCopyWithImpl<$Res> extends _$BookModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_BookModel implements _BookModel {
   const _$_BookModel(this.id, this.name, this.type, this.available);
+
+  factory _$_BookModel.fromJson(Map<String, dynamic> json) =>
+      _$$_BookModelFromJson(json);
 
   @override
   final int id;
@@ -174,11 +186,19 @@ class _$_BookModel implements _BookModel {
   @override
   _$BookModelCopyWith<_BookModel> get copyWith =>
       __$BookModelCopyWithImpl<_BookModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BookModelToJson(this);
+  }
 }
 
 abstract class _BookModel implements BookModel {
   const factory _BookModel(int id, String name, String type, bool available) =
       _$_BookModel;
+
+  factory _BookModel.fromJson(Map<String, dynamic> json) =
+      _$_BookModel.fromJson;
 
   @override
   int get id;
